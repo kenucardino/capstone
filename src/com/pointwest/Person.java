@@ -1,7 +1,8 @@
 package com.pointwest;
 
 public class Person {
-    String name, address;
+    protected String name;
+    protected String address;
 
     public Person() {
     }

@@ -3,7 +3,7 @@ package com.pointwest;
 import java.util.ArrayList;
 
 public class Contact extends Person{
-    String email, phoneNumber;
+    private String email, phoneNumber;
     public Contact(){
 
     }

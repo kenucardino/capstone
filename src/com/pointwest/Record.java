@@ -2,5 +2,7 @@ package com.pointwest;
 
 public interface Record {
     Contact addContact(Contact contact);
-    public void getAllContacts();
+    void getAllContacts();
+    Contact searchContact(String name);
+    Contact updateContact(int index, Contact contact);
 }

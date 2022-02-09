@@ -1,8 +1,9 @@
 package com.pointwest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+
+import static com.pointwest.Util.*;
 
 public class Main {
 
@@ -13,6 +14,7 @@ public class Main {
         String phoneNumber;
         Phonebook phonebook = new Phonebook();
         phonebook.contacts.addAll(generateContacts());
+        System.out.println("Generated four initial contacts");
         int closeOptionCounter = 0;
         Scanner appScanner = new Scanner(System.in);
         int choice;
@@ -34,40 +36,45 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("[Add Contact]");
-                    System.out.println("Enter contact name: ");
-                    appScanner.nextLine();
-                    name = appScanner.nextLine();
-                    System.out.println("Enter contact address: ");
-                    address = appScanner.nextLine();
-                    System.out.println("Enter contact email: ");
-                    email = appScanner.nextLine();
-                    System.out.println("Enter contact phone number: ");
-                    phoneNumber = appScanner.nextLine();
-                    Contact addedContact = phonebook.addContact(new Contact(name, address, email, phoneNumber));
+                    Contact newContact = populate();
+                    contactMessageBuilder(phonebook.addContact(newContact));
                     break;
                 case 3:
-                    System.out.println("this is choice 3");
+                    System.out.println("[Update Contact]");
+                    System.out.println("Enter existing contact name to be updated");
+                    appScanner.nextLine();
+                    try {
+                        Contact contactToBeUpdated = phonebook.searchContact(appScanner.nextLine());
+                        contactMessageBuilder(contactToBeUpdated);
+                        int index = phonebook.contacts.indexOf(contactToBeUpdated);
+                        Contact updatedContact = populate();
+                        contactMessageBuilder(phonebook.updateContact(index, updatedContact));
+                    }catch (NullPointerException e){
+                        System.out.println("No contact found");
+                    }
                     break;
                 case 4:
                     System.out.println("this is choice 4");
                     break;
                 case 5:
-                    System.out.println("this is choice 5");
+                    System.out.println("[Search Contact]");
+                    System.out.println("Enter existing contact name");
+                    appScanner.nextLine();
+//                    String contactName = appScanner.nextLine();
+                    try {
+                        contactMessageBuilder(phonebook.searchContact(appScanner.nextLine()));
+                    }catch (NullPointerException e){
+                        System.out.println("No contact found");
+                    }
                     break;
                 case 6:
                     System.out.println("this is choice 6");
                     closeOptionCounter++;
                     break;
             }
+            System.out.println("Exiting to Menu");
         }
     }
 
-    public static ArrayList<Contact> generateContacts(){
-        ArrayList<Contact> contacts = new ArrayList<>();
-        contacts.add(new Contact("Kenu Cardino","Manila","kenu.cardino@pointwest.com.ph","09837625152"));
-        contacts.add(new Contact("Jograt Labingpito","Manila","jograt.labingpito@mail.com","09127362532"));
-        contacts.add(new Contact("Jane Doe","Angeles, Pampanga","JaneDoe@ym.com","09287635162"));
-        contacts.add(new Contact("John Smith","San Francisco","JSmith@any.com","092817463552"));
-        return contacts;
-    }
+
 }

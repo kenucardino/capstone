@@ -23,7 +23,6 @@ public class Phonebook implements Record{
         this.contacts.add(contact);
         int indexOfAddedContact = this.contacts.indexOf(contact);
         System.out.println("[Notification] New contact has been added");
-        showContactMessageGenerator(this.contacts.get(indexOfAddedContact));
         return this.contacts.get(indexOfAddedContact);
     }
 
@@ -33,10 +32,30 @@ public class Phonebook implements Record{
         for (Contact contact : this.contacts) {
 //            showContactMessageGenerator(contact);
 //            System.out.println("-----------------------");
-            System.out.println(counter + ". Name: " + contact.name + " -  Phone number: " + contact.phoneNumber);
+            System.out.println(counter + ". Name: " + contact.getName() + " -  Phone number: " + contact.getPhoneNumber());
             counter++;
         }
     }
+
+    @Override
+    public Contact searchContact(String name) {
+        for (Contact contact: this.contacts) {
+            if (contact.getName().equalsIgnoreCase(name)){
+                System.out.println("[Notification] Contact Found");
+                return contact;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Contact updateContact(int index, Contact contact) {
+        this.contacts.set(index,contact);
+        Contact updatedContact = this.contacts.get(index);
+        return updatedContact;
+    }
+
+
     public void showContactMessageGenerator(Contact contact) {
         System.out.println("Name: " + contact.getName());
         System.out.println("Address: " + contact.getAddress());
