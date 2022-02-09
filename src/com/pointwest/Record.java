@@ -5,4 +5,5 @@ public interface Record {
     void getAllContacts();
     Contact searchContact(String name);
     Contact updateContact(int index, Contact contact);
+    Contact deleteContact(Contact contact);
 }

@@ -47,6 +47,7 @@ public class Main {
                         Contact contactToBeUpdated = phonebook.searchContact(appScanner.nextLine());
                         contactMessageBuilder(contactToBeUpdated);
                         int index = phonebook.contacts.indexOf(contactToBeUpdated);
+                        System.out.println("[Notification] Enter values to fields for the update: ");
                         Contact updatedContact = populate();
                         contactMessageBuilder(phonebook.updateContact(index, updatedContact));
                     }catch (NullPointerException e){
@@ -54,13 +55,25 @@ public class Main {
                     }
                     break;
                 case 4:
-                    System.out.println("this is choice 4");
+                    System.out.println("[Remove Contact]");
+                    appScanner.nextLine();
+                    System.out.println("Enter existing contact name to be deleted: ");
+                    try {
+                        Contact contactToBeDeleted = phonebook.searchContact(appScanner.nextLine());
+                        contactMessageBuilder(contactToBeDeleted);
+                        System.out.println("Are you sure to delete contact above?" );
+                        if(appScanner.nextLine().trim().equalsIgnoreCase("yes")){
+                            Contact removedContact =  phonebook.deleteContact(contactToBeDeleted);
+                            System.out.println("Contact with name: " + removedContact.getName() + "was successfully removed" );
+                        }
+                    }catch (NullPointerException e){
+                        System.out.println("No contact found");
+                    }
                     break;
                 case 5:
                     System.out.println("[Search Contact]");
                     System.out.println("Enter existing contact name");
                     appScanner.nextLine();
-//                    String contactName = appScanner.nextLine();
                     try {
                         contactMessageBuilder(phonebook.searchContact(appScanner.nextLine()));
                     }catch (NullPointerException e){

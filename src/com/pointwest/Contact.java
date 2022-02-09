@@ -1,6 +1,5 @@
 package com.pointwest;
 
-import java.util.ArrayList;
 
 public class Contact extends Person{
     private String email, phoneNumber;
@@ -9,26 +8,9 @@ public class Contact extends Person{
     }
 
     public Contact(String name, String address, String email, String phoneNumber) {
-        this.name = name;
-        this.address = address;
+        super(name, address);
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getEmail() {
@@ -47,11 +29,4 @@ public class Contact extends Person{
         this.phoneNumber = phoneNumber;
     }
 
-//    public Contact addContact(){
-//        Contact contact = new Contact();
-//
-//    }
-//    public Contact getContact(Contact contact){
-//
-//    }
 }

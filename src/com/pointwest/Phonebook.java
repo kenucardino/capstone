@@ -19,6 +19,7 @@ public class Phonebook implements Record{
         this.contacts = contacts;
     }
 
+    @Override
     public Contact addContact(Contact contact){
         this.contacts.add(contact);
         int indexOfAddedContact = this.contacts.indexOf(contact);
@@ -26,6 +27,7 @@ public class Phonebook implements Record{
         return this.contacts.get(indexOfAddedContact);
     }
 
+    @Override
     public void getAllContacts(){
         System.out.println("[Notification] You have " + this.contacts.size() + " contact(s)");
         int counter = 1;
@@ -52,16 +54,13 @@ public class Phonebook implements Record{
     public Contact updateContact(int index, Contact contact) {
         this.contacts.set(index,contact);
         Contact updatedContact = this.contacts.get(index);
+        System.out.println("[Notification] Contact has been updated");
         return updatedContact;
     }
 
-
-    public void showContactMessageGenerator(Contact contact) {
-        System.out.println("Name: " + contact.getName());
-        System.out.println("Address: " + contact.getAddress());
-        System.out.println("Email: " + contact.getEmail());
-        System.out.println("Phone Number: " + contact.getPhoneNumber());
+    @Override
+    public Contact deleteContact(Contact contact) {
+        this.contacts.remove(contact);
+        return contact;
     }
-
-
 }
