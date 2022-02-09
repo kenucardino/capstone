@@ -1,6 +1,8 @@
 package com.pointwest;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
 public class Phonebook implements Record{
     ArrayList<Contact> contacts = new ArrayList<>();
 
@@ -32,8 +34,6 @@ public class Phonebook implements Record{
         System.out.println("[Notification] You have " + this.contacts.size() + " contact(s)");
         int counter = 1;
         for (Contact contact : this.contacts) {
-//            showContactMessageGenerator(contact);
-//            System.out.println("-----------------------");
             System.out.println(counter + ". Name: " + contact.getName() + " -  Phone number: " + contact.getPhoneNumber());
             counter++;
         }
@@ -42,7 +42,7 @@ public class Phonebook implements Record{
     @Override
     public Contact searchContact(String name) {
         for (Contact contact: this.contacts) {
-            if (contact.getName().equalsIgnoreCase(name)){
+            if (contact.getName().trim().equalsIgnoreCase(name.trim().toLowerCase())){
                 System.out.println("[Notification] Contact Found");
                 return contact;
             }

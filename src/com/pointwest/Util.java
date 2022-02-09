@@ -28,13 +28,27 @@ public class Util {
         Scanner appScanner = new Scanner(System.in);
         Contact contact = new Contact();
         System.out.println("Enter contact name: ");
-        contact.setName(appScanner.nextLine());
+        name = appScanner.nextLine();
+        if(name.trim().equalsIgnoreCase("exit"))
+            return null;
+        contact.setName(name.trim());
         System.out.println("Enter contact address: ");
-        contact.setAddress(appScanner.nextLine());
+        address = appScanner.nextLine();
+        if(address.trim().equalsIgnoreCase("exit"))
+            return null;
+        contact.setAddress(address.trim());
         System.out.println("Enter contact email: ");
-        contact.setEmail(appScanner.nextLine());
+        email = appScanner.nextLine();
+        if(email.trim().equalsIgnoreCase("exit"))
+            return null;
+        contact.setEmail(email.trim());
         System.out.println("Enter contact phone number: ");
-        contact.setPhoneNumber(appScanner.nextLine());
+        phoneNumber = appScanner.nextLine();
+        if(phoneNumber.trim().equalsIgnoreCase("exit"))
+            return null;
+        contact.setPhoneNumber(phoneNumber.trim());
         return contact;
     }
+
+
 }
