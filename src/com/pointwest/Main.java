@@ -96,19 +96,28 @@ public class Main {
                     case 6:
                         System.out.println(options[5]);
                         System.out.println("Are you really sure to remove all contacts? (yes/no)" );
-                        if(appScanner.nextLine().trim().equalsIgnoreCase("yes")){
+                        appScanner.nextLine();
+                        String removeAllChoice = appScanner.nextLine();
+                        if(removeAllChoice.trim().equalsIgnoreCase("yes"))
                             phonebook.deleteAllContacts();
-                        }
-
+                        else if (removeAllChoice.trim().equalsIgnoreCase("no"))
+                            System.out.println("okay..");
+                        else
+                            System.out.println("Invalid input");
                         break;
                     case 7:
                         System.out.println(options[6]);
                         closeOptionCounter++;
                         break;
+
                     default:
                         System.out.println("Invalid input. Please choose from the options.");
                 }
-                System.out.println("Exiting to Menu");
+                if (closeOptionCounter == 0) {
+                    System.out.println("Exiting to Menu");
+                } else {
+                    System.out.println("Exiting");
+                }
             }catch (InputMismatchException e){
                 System.out.println("Numbers only!");
                 appScanner.nextLine();
