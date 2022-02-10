@@ -19,7 +19,8 @@ public class Main {
                             "[3] Update Contact",
                             "[4] Remove Contact",
                             "[5] Search Contact",
-                            "[6] Close app"};
+                            "[6] Remove All Contacts",
+                            "[7] Close app"};
         while (closeOptionCounter == 0){
             System.out.println("Options: " + String.join(" - ",options));
             System.out.println("=========================");
@@ -28,11 +29,11 @@ public class Main {
                 choice = appScanner.nextInt();
                 switch (choice){
                     case 1:
-                        System.out.println("[Display Contacts]");
+                        System.out.println(options[0]);
                         phonebook.getAllContacts();
                         break;
                     case 2:
-                        System.out.println("[Add Contact]");
+                        System.out.println(options[1]);
                         System.out.println("Type 'exit' anytime to cancel the operation");
                         Contact newContact = populate();
                         if (newContact == null)
@@ -40,7 +41,7 @@ public class Main {
                         contactMessageBuilder(phonebook.addContact(newContact));
                         break;
                     case 3:
-                        System.out.println("[Update Contact]");
+                        System.out.println(options[2]);
                         System.out.println("Enter existing contact name to be updated");
                         System.out.println("Type 'exit' anytime to cancel the operation");
                         appScanner.nextLine();
@@ -59,7 +60,7 @@ public class Main {
                         }
                         break;
                     case 4:
-                        System.out.println("[Remove Contact]");
+                        System.out.println(options[3]);
                         appScanner.nextLine();
                         System.out.println("Enter existing contact name to be deleted: ");
                         System.out.println("Type 'exit' anytime to cancel the operation");
@@ -69,17 +70,17 @@ public class Main {
                                 break;
                             Contact contactToBeDeleted = phonebook.searchContact(nameToBeDeleted);
                             contactMessageBuilder(contactToBeDeleted);
-                            System.out.println("Are you sure to delete contact above?" );
+                            System.out.println("Are you sure to remove contact above? (yes/no)" );
                             if(appScanner.nextLine().trim().equalsIgnoreCase("yes")){
                                 Contact removedContact =  phonebook.deleteContact(contactToBeDeleted);
-                                System.out.println("Contact with name: " + removedContact.getName() + "was successfully removed" );
+                                System.out.println("Contact with name: " + removedContact.getName() + " was successfully removed" );
                             }
                         }catch (NullPointerException e){
                             System.out.println("No contact found");
                         }
                         break;
                     case 5:
-                        System.out.println("[Search Contact]");
+                        System.out.println(options[4]);
                         System.out.println("Type 'exit' anytime to cancel the operation");
                         System.out.println("Enter existing contact name");
                         appScanner.nextLine();
@@ -93,7 +94,15 @@ public class Main {
                         }
                         break;
                     case 6:
-                        System.out.println("this is choice 6");
+                        System.out.println(options[5]);
+                        System.out.println("Are you really sure to remove all contacts? (yes/no)" );
+                        if(appScanner.nextLine().trim().equalsIgnoreCase("yes")){
+                            phonebook.deleteAllContacts();
+                        }
+
+                        break;
+                    case 7:
+                        System.out.println(options[6]);
                         closeOptionCounter++;
                         break;
                     default:

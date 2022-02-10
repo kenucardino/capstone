@@ -1,7 +1,6 @@
 package com.pointwest;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Phonebook implements Record{
     ArrayList<Contact> contacts = new ArrayList<>();
@@ -62,5 +61,11 @@ public class Phonebook implements Record{
     public Contact deleteContact(Contact contact) {
         this.contacts.remove(contact);
         return contact;
+    }
+
+    @Override
+    public void deleteAllContacts() {
+        this.contacts.clear();
+        System.out.println("[Notification] Successfully removed all contacts. I hope you know what you are doing.");
     }
 }

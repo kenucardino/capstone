@@ -6,4 +6,5 @@ public interface Record {
     Contact searchContact(String name);
     Contact updateContact(int index, Contact contact);
     Contact deleteContact(Contact contact);
+    void deleteAllContacts();
 }
